@@ -1,0 +1,24 @@
+class Solution:
+    def pythagoreanTriplet(self, arr):
+        n = len(arr)
+        squares = [x * x for x in arr]
+        square_set = set(squares)
+        for i in range(n):
+            for j in range(i + 1, n):
+                sum_of_squares = squares[i] + squares[j]
+                if sum_of_squares in square_set:
+                    return True
+        return False
+
+
+
+Examples:
+
+Input: arr[] = [3, 2, 4, 6, 5]
+Output: true
+Explanation: a=3, b=4, and c=5 forms a pythagorean triplet.
+Input: arr[] = [3, 8, 5]
+Output: false
+Explanation: No such triplet possible.
+Input: arr[] = [1, 1, 1]
+Output: false
