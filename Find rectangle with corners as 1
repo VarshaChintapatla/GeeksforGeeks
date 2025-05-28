@@ -1,0 +1,38 @@
+class Solution:    
+    def ValidCorner(self, mat): 
+        m = [] 
+        
+        for i in range(len(mat)):
+            l = []  
+            for j in range(len(mat[0])):
+                if mat[i][j] == 1:
+                    l.append(j)  
+            
+            if len(l) > 1:
+                m.append(l)  
+        for i in range(len(m)):
+            for j in range(i + 1, len(m)):
+                c = set(m[i]).intersection(set(m[j]))
+                if len(c) >= 2:
+                    return True
+
+        return False
+
+
+
+
+Example:
+
+Input: mat[][] =
+[[1, 0, 0, 1, 0],
+[0, 0, 1, 0, 1],
+[0, 0, 0, 1, 0], 
+[1, 0, 1, 0, 1]] 
+Output: true
+Explanation: Valid corners are at index (1,2), (1,4), (3,2), (3,4) 
+Input:mat[][] =
+[[0, 0, 0],
+[0, 0, 0],
+[0, 0, 0]]
+Output: false
+Explanation: There are no valid corners.
