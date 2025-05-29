@@ -1,0 +1,30 @@
+class Solution:
+    def sumOfLongRootToLeafPath(self, root):
+        def dfs(node, current_sum, current_length):
+            if node is None:
+                return (current_length, current_sum)
+            
+            
+            left_len, left_sum = dfs(node.left, current_sum + node.data, current_length + 1)
+            right_len, right_sum = dfs(node.right, current_sum + node.data, current_length + 1)
+            
+            
+            if left_len > right_len:
+                return (left_len, left_sum)
+            elif right_len > left_len:
+                return (right_len, right_sum)
+            else:
+                return (left_len, max(left_sum, right_sum))
+        
+        
+        _, result_sum = dfs(root, 0, 0)
+        return result_sum
+
+
+the root to any leaf node. If two or more paths have the same length, the path with the maximum sum of node values should be considered.
+
+Examples:
+
+Input: root[] = [4, 2, 5, 7, 1, 2, 3, N, N, 6, N]
+ 
+Output: 13
